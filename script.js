@@ -16,8 +16,6 @@ function checkInputs() {
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
-    // const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
     if (usernameValue === '') {
         setErrorFor(username, 'Username cannot be blank');
     } else {
@@ -27,9 +25,6 @@ function checkInputs() {
     if (emailValue === '') {
         setErrorFor(email, 'Email cannot be blank');
     }
-    // else if (emailValue !== mailformat) {
-    //     setErrorFor(emailValue, 'enter valid email address')
-    // }
     else if (!isEmail(emailValue)) {
         setErrorFor(email, 'Not a valid email');
     }
@@ -41,7 +36,12 @@ function checkInputs() {
         setErrorFor(password, 'Password cannot be blank');
     } else if (passwordValue.length <= 6) {
         setErrorFor(password, 'Password longer then 6 characters');
-    } else {
+    } else if (passwordValue.length >= 20) {
+        setErrorFor(password, 'Password less then 20 characters');
+    } else if (passwordValue === 'password') {
+        setErrorFor(password, 'not access password is password');
+    }
+     else {
         setSuccessFor(password);
     }
 
